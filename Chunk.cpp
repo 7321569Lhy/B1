@@ -2,7 +2,8 @@
 #include<stdlib.h>
 #include<malloc.h>
 #define CHUNKSIZE 80
-typedef unsigned char Sstring[256];//¶¨³¤Ë³Ğò´æ´¢£¬[0]Î»´æ·Å´®³¤
+//an additional comment for testing
+typedef unsigned char Sstring[256];//å®šé•¿é¡ºåºå­˜å‚¨ï¼Œ[0]ä½å­˜æ”¾ä¸²é•¿
 typedef struct {
 	char ch[CHUNKSIZE];
 	int length;
@@ -10,12 +11,12 @@ typedef struct {
 typedef struct {
 	char* ch;
 	int length;
-}HString;//¶Ñ·ÖÅä´æ´¢
-typedef struct Chunk {//½Úµã½á¹¹
+}HString;//å †åˆ†é…å­˜å‚¨
+typedef struct Chunk {//èŠ‚ç‚¹ç»“æ„
 	char ch[80];
 	Chunk* next;
 }Chunk;
-typedef struct {//´®µÄÁ´±í½á¹¹
+typedef struct {//ä¸²çš„é“¾è¡¨ç»“æ„
 	Chunk* head, * tail;
 	int curlen;
 }LString;
@@ -27,17 +28,17 @@ int Index(Sstring S, Sstring L, int pos)
 		if (S[i] == L[j]) {
 			++i;
 			++j;
-		}//°´Î»¶Ô±È£¬ÏàµÈÔò¼ÌĞøºóÒÆ
+		}//æŒ‰ä½å¯¹æ¯”ï¼Œç›¸ç­‰åˆ™ç»§ç»­åç§»
 		else {
 			i = i - j + 2;
 			j = 1;
-		}//¶Ô±È²»ÏàµÈ£¬Ö÷´®Ö¸ÕëºóÒÆ£¬Ä£Ê½´®»Øµ½Æğµã
+		}//å¯¹æ¯”ä¸ç›¸ç­‰ï¼Œä¸»ä¸²æŒ‡é’ˆåç§»ï¼Œæ¨¡å¼ä¸²å›åˆ°èµ·ç‚¹
 	}
 		if (j > L[0]) return i - L[0];
 		else return 0;
-}//ÔÚÖ÷´®µÚposÎ»¿ªÊ¼Ñ°ÕÒÓëÄ£Ê½´®LÏàµÈµÄ×Ö´®Î»ÖÃ£¬Êµ¼ÊÓ¦ÓÃµÄÊÇÆÓËØÄ£Ê½Æ¥Åä
+}//åœ¨ä¸»ä¸²ç¬¬posä½å¼€å§‹å¯»æ‰¾ä¸æ¨¡å¼ä¸²Lç›¸ç­‰çš„å­—ä¸²ä½ç½®ï¼Œå®é™…åº”ç”¨çš„æ˜¯æœ´ç´ æ¨¡å¼åŒ¹é…
 
-//Ğ§ÂÊ¸ü¸ßµÄKMPËã·¨
+//æ•ˆç‡æ›´é«˜çš„KMPç®—æ³•
 int Index_KMP(SString S, SString T, int next[]) {
 	int i = 1, j = 1;
 	while (i <= S.length && j <= T.length) {
@@ -50,7 +51,7 @@ int Index_KMP(SString S, SString T, int next[]) {
 	if (j > T.length) return i-T.length;
 	else return 0;
 }
-//¼ÆËãnext[]Êı×éµÄÊµÏÖ
+//è®¡ç®—next[]æ•°ç»„çš„å®ç°
 void get_next(SString T, int next[]) {
 	int i = 1, j = 0;
 	next[1] = 0;
