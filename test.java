@@ -3,6 +3,7 @@ public class test {
     public static  void main(String[] args){
         pay example=new pay();
         int time=10;
+        int length=9;
         example.price=24;
         example.withhold_rate=0.10;
         example.pay_rate=0.05;
